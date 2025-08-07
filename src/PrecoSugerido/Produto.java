@@ -1,6 +1,10 @@
 package PrecoSugerido;
 
+import java.util.Scanner;
+
 public class Produto {
+    Scanner sc = new Scanner(System.in);
+
     private String name;
     private double price;
 
@@ -14,11 +18,11 @@ public class Produto {
     }
 
     public void setPrice(double newPrice) {
-        if (newPrice < 0) {
-            System.out.println("Valor inválido");
-        } else {
-            this.price = newPrice;
+        while(newPrice < 0) {
+            System.out.println("Valor inválido, o valor deve ser um número positivo");
+            newPrice = sc.nextDouble();
         }
+        this.price = newPrice;
     }
 
     public void setName(String newName) {
