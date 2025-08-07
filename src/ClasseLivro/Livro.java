@@ -15,7 +15,7 @@ public class Livro {
         this.numOfPages = numOfPages;
     }
 
-    public void setTitulo(String newTitle) {
+    public void setTitle(String newTitle) {
         this.title = newTitle;
     }
 
@@ -24,15 +24,11 @@ public class Livro {
     }
 
     public void setNumOfPages(int newNumOfPages) {
-        do {
-            if (newNumOfPages < 5) {
-                System.out.println("Valor Inválido! Número de páginas deve ser maior que 5");
-                sc.nextInt();
-            } else {
-                this.numOfPages = newNumOfPages;
-                break;
-            }
-        } while(numOfPages < 5);
+        while (newNumOfPages < 5) {
+            System.out.println("Valor Inválido! Número de páginas deve ser maior que 5");
+            newNumOfPages = sc.nextInt();
+        }
+        this.numOfPages = newNumOfPages;
     }
 
     public String getTitle() {
