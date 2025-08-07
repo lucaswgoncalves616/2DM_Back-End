@@ -14,7 +14,11 @@ public class Produto {
     }
 
     public void setPrice(double newPrice) {
-        this.price = newPrice;
+        if (newPrice < 0) {
+            System.out.println("Valor inválido");
+        } else {
+            this.price = newPrice;
+        }
     }
 
     public void setName(String newName) {
