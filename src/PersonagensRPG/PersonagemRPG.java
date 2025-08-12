@@ -43,7 +43,7 @@ public class PersonagemRPG {
 
     public void setLevel(int newLevel) {
         while (newLevel < 1) {
-            System.out.println("Nivel do personagem deve ser maior do que 1.");
+            System.out.println("Nível do personagem deve ser maior do que 1.");
             newLevel = sc.nextInt();
         }
         this.level = newLevel;

@@ -23,7 +23,5 @@ public class Main {
 
         System.out.println("Aqui está um resumo do seu personagem: ");
         System.out.println("Nome: " + hero1.getName() + "\nClasse: " + hero1.getRole() + "\nNível: " + hero1.getLevel() + "\nVida: " + hero1.getHealth());
-
-
     }
 }
