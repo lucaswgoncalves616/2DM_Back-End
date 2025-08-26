@@ -15,4 +15,6 @@ public class Carro extends Veiculo{
     public float getVelocidadeMedia() {
         return this.velocidadeMedia;
     }
+
+
 }
