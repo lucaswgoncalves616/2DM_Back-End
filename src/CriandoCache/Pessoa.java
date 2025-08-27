@@ -58,28 +58,28 @@ public class Pessoa {
         return new Pessoa(newId++, nome, idade);
     }
 
-    public void pesquisarPessoa(ArrayList<Pessoa> banco, ArrayList<Pessoa> cache) {
+    public String pesquisarPessoa(ArrayList<Pessoa> banco, ArrayList<Pessoa> cache) {
         int id;
 
         System.out.println("Digite o ID da pessoa que deseja pesquisar: ");
         id = sc.nextInt();
         sc.nextLine();
 
-        for (int i = 0; i < cache.size(); i++) {
-            if (cache.isEmpty()) {
-                System.out.println("Vazio");
-            } else {
-                System.out.println("Não vazio");
+        for (Pessoa value : cache) {
+            if (id == value.getId()) {
+                System.out.println("\nPessoa encontrada no cache: ");
+                return "Nome: " + value.getNome() + "\nIdade: " + value.getIdade();
             }
         }
 
         for (Pessoa pessoa : banco) {
             if (id == pessoa.getId()) {
-                System.out.println("Pessoa buscada no banco e adicionada ao cache: ");
-                System.out.println(pessoa);
+                System.out.println("\nPessoa buscada no banco e adicionada ao cache: ");
                 cache.add(banco.get(id - 1));
-                break;
+                return "Nome: " + pessoa.getNome() + "\nIdade: " + pessoa.getIdade();
             }
         }
+
+        return "\nPessoa não encontrada";
     }
 }

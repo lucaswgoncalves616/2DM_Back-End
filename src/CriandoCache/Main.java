@@ -27,14 +27,11 @@ public class Main {
 
         // System.out.println(banco);
 
-        // banco.add(banco.getFirst().cadastrarPessoa());
-        // banco.getFirst().pesquisarPessoa(banco, cache);
-
         System.out.println("Escolha a opção que deseja executar: ");
 
         while (true) {
             System.out.println("""
-                    1. Consultar pessoa através do ID
+                    \n1. Consultar pessoa através do ID
                     2. Cadastrar nova pessoa
                     3. Sair
                     """);
@@ -42,11 +39,13 @@ public class Main {
             sc.nextLine();
 
             if (resposta == 1) {
-                banco.getFirst().pesquisarPessoa(banco, cache);
+                System.out.println(banco.getFirst().pesquisarPessoa(banco, cache));
             } else if (resposta == 2) {
                 banco.add(banco.getFirst().cadastrarPessoa());
             } else if (resposta == 3) {
                 break;
+            } else {
+                System.out.println("Comando inválido!");
             }
         }
 
