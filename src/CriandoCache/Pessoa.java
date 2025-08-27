@@ -1,4 +1,4 @@
-package criandoCache;
+package CriandoCache;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -59,7 +59,27 @@ public class Pessoa {
     }
 
     public void pesquisarPessoa(ArrayList<Pessoa> banco, ArrayList<Pessoa> cache) {
+        int id;
+
         System.out.println("Digite o ID da pessoa que deseja pesquisar: ");
-        System.out.println(banco.get(sc.nextInt()-1));
+        id = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < cache.size(); i++) {
+            if (cache.isEmpty()) {
+                System.out.println("Vazio");
+            } else {
+                System.out.println("Não vazio");
+            }
+        }
+
+        for (Pessoa pessoa : banco) {
+            if (id == pessoa.getId()) {
+                System.out.println("Pessoa buscada no banco e adicionada ao cache: ");
+                System.out.println(pessoa);
+                cache.add(banco.get(id - 1));
+                break;
+            }
+        }
     }
 }
