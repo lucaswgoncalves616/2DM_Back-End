@@ -33,7 +33,8 @@ public class Main {
             System.out.println("""
                     \n1. Consultar pessoa através do ID
                     2. Cadastrar nova pessoa
-                    3. Sair
+                    3. Mostrar Cache
+                    4. Sair
                     """);
             resposta = sc.nextInt();
             sc.nextLine();
@@ -43,12 +44,14 @@ public class Main {
             } else if (resposta == 2) {
                 banco.add(banco.getFirst().cadastrarPessoa());
             } else if (resposta == 3) {
+                System.out.println(cache);
+            } else if (resposta == 4) {
                 break;
             } else {
                 System.out.println("Comando inválido!");
             }
         }
 
-        System.out.println("Array de cache: " + cache);
+
     }
 }

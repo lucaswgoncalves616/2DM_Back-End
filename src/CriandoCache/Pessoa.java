@@ -76,6 +76,9 @@ public class Pessoa {
             if (id == pessoa.getId()) {
                 System.out.println("\nPessoa buscada no banco e adicionada ao cache: ");
                 cache.add(banco.get(id - 1));
+                if (cache.size() > 10) {
+                    cache.removeFirst();
+                }
                 return "Nome: " + pessoa.getNome() + "\nIdade: " + pessoa.getIdade();
             }
         }
