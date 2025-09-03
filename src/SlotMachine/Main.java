@@ -9,12 +9,12 @@ public class Main {
         return "R$ " + String.format("%.2f", balance);
     }
 
-    public static double makeBet(double balance){
+    public static double makeBet(double balance) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite o quanto quer apostar: ");
         double bet = sc.nextDouble();
 
-        while(true){
+        while (true) {
             if (bet > balance) {
                 System.out.println("Valor da aposta deve ser menor que o saldo!");
                 bet = sc.nextDouble();
@@ -34,46 +34,77 @@ public class Main {
         String[] spinedRow = new String[3];
 
         for (int i = 0; i < spinedRow.length; i++) {
-            newRand = rand.nextInt(0,5);
+            newRand = rand.nextInt(0, 5);
             spinedRow[i] = row[newRand];
         }
 
         return spinedRow;
     }
 
-    public static double calculatePrize(double bet, String[] spinedRow){
+    public static double calculatePrize(double bet, String[] spinedRow) {
         if (spinedRow[0].equals(spinedRow[1]) && spinedRow[0].equals(spinedRow[2])) {
+            System.out.println("\nGanhou x5 !!!");
             return bet * 5;
         } else if (spinedRow[0].equals(spinedRow[1]) || spinedRow[0].equals(spinedRow[2]) || spinedRow[1].equals(spinedRow[2])) {
+            System.out.println("\nGanhou x2!");
             return bet * 2;
         }
+        System.out.println("\nDeu ruim, perdeu :(");
         return 0;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String[] row = {"🦁","🐯","🦊","🐻","🐴","🦄"};
+        String[] row = {"🦁", "🐯", "🦊", "🐻", "🐴", "🦄"};
         double balance = 100;
+        String spining = "Girando...";
+        String response = "s";
+        double bet = 0;
 
         System.out.println("""
                 **********************
                 Bem vindo ao Java Slot
                 Simbolos: 🦁🐯🦊🐻🐴🦄
-                **********************
-                """);
-
+                **********************""");
         System.out.println("Saldo atual: " + formatReal(balance));
-        double bet = makeBet(balance);
+        System.out.println();
 
-        balance -= bet;
-        String[] spinedRow = slotSpin(row);
-        System.out.println(Arrays.toString(spinedRow));
-        balance += calculatePrize(bet, spinedRow);
+        while (response.equalsIgnoreCase("s") || response.equalsIgnoreCase("sim")) {
+            if (balance == 0) {
+                System.out.println("Perdeu Tudo D: Saindo...");
+                break;
+            } else {
+                bet = makeBet(balance);
+                balance -= bet;
+                String[] spinedRow = slotSpin(row);
+
+                for (char c : spining.toCharArray()) {
+                    System.out.print(c);
+                    try {
+                        Thread.sleep(200); // atraso de 100ms entre cada caractere
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                System.out.println();
+                for (String simbol : spinedRow) {
+                    System.out.print(simbol + " ");
+                    try {
+                        Thread.sleep(850);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                balance += calculatePrize(bet, spinedRow);
+                System.out.println("Saldo atual: " + formatReal(balance));
+
+                System.out.println("Deseja jogar novamente? (S/N)");
+                response = sc.nextLine();
+            }
+        }
 
 
-
-        System.out.println("Saldo atual: " + formatReal(balance));
 /*
         String mensagem = "Olá, isso é uma animação no console!";
 
