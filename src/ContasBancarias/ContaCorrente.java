@@ -6,7 +6,7 @@ public class ContaCorrente extends Conta{
     }
 
     @Override
-    void calcularTarifaMensal() {
-
+    double calcularTarifaMensal() {
+        return 12;
     }
 }

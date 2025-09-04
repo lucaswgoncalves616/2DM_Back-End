@@ -1,6 +1,10 @@
 package ContasBancarias;
 
+import java.util.Scanner;
+
 abstract class Conta {
+    Scanner sc = new Scanner(System.in);
+
     private String numero;
     private String agencia;
     private String titular;
@@ -44,6 +48,44 @@ abstract class Conta {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
+    @Override
+    public String toString(){
+        return "Agência: " + this.agencia +
+                "\nNumero: " + this.numero +
+                "\nTitular: " + this.titular +
+                "\nSaldo: " + this.saldo;
+    }
+
+    public void escolherOperacao(Conta conta) {
+        int response = 0;
+        while (true) {
+            System.out.println("""
+                    1. Saque
+                    2. Depósito
+                    3. Mostrar saldo
+                    4. Sair
+                    
+                    Escolha a operação que deseja realizar:
+                    """);
+            response = sc.nextInt();
+            sc.nextLine();
+
+            if (response <= 0 || response > 4) {
+                System.out.println("Opção inválida, tente novamente...");
+            } else if (response == 1) {
+                System.out.println("Digite o valor que deseja sacar: ");
+                conta.sacar(sc.nextDouble());
+            } else if (response == 2) {
+                System.out.println("Digite o valor que deseja depositar: ");
+                conta.depositar(sc.nextDouble());
+            } else if (response == 3) {
+                System.out.println(conta.exibirSaldo());
+            } else {
+                break;
+            }
+        }
+    }
     
     public String formatarReal(double valor) {
         return "R$ " + String.format("%.2f", valor);
@@ -61,5 +103,5 @@ abstract class Conta {
         return formatarReal(saldo);
     }
 
-    abstract void calcularTarifaMensal();
+    abstract double calcularTarifaMensal();
 }
