@@ -40,7 +40,7 @@ public class Main {
             sc.nextLine();
 
             if (resposta == 1) {
-                System.out.println(banco.getFirst().pesquisarPessoa(banco, cache));
+                System.out.println(Pessoa.pesquisarPessoa(banco, cache));
             } else if (resposta == 2) {
                 banco.add(banco.getFirst().cadastrarPessoa());
             } else if (resposta == 3) {

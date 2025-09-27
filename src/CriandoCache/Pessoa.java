@@ -58,7 +58,9 @@ public class Pessoa {
         return new Pessoa(newId++, nome, idade);
     }
 
-    public String pesquisarPessoa(ArrayList<Pessoa> banco, ArrayList<Pessoa> cache) {
+    public static String pesquisarPessoa(ArrayList<Pessoa> banco, ArrayList<Pessoa> cache) {
+        Scanner sc = new Scanner(System.in);
+
         int id;
 
         System.out.println("Digite o ID da pessoa que deseja pesquisar: ");
@@ -83,6 +85,7 @@ public class Pessoa {
             }
         }
 
+        sc.close();
         return "\nPessoa não encontrada";
     }
 }
