@@ -11,7 +11,7 @@ public class PessoaJuridica extends Conta{
     }
 
     @Override
-    void calcularTarifaMensal() {
-
+    double calcularTarifaMensal() {
+        return 20;
     }
 }
